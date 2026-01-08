@@ -1,8 +1,21 @@
 import pandas as pd
+import joblib
+import os
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 from xgboost import XGBClassifier
+
+#salvar modelo e label encoder
+def save_artifacts(model, label_encoder):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    models_path = os.path.join(base_dir, "models")
+
+    os.makedirs(models_path, exist_ok=True)
+
+    joblib.dump(model, os.path.join(models_path, "xgboost_model.joblib"))
+    joblib.dump(label_encoder, os.path.join(models_path, "label_encoder.joblib"))
+
 
 DATASET_PATH = "../data/malmem2022.csv"
 
@@ -47,3 +60,8 @@ if __name__ == "__main__":
     print("\nAcurácia:", accuracy_score(y_test, y_pred))
     print("\nRelatório de classificação:\n")
     print(classification_report(y_test, y_pred))
+        
+    save_artifacts(model, label_encoder)
+    print("\nModelo e LabelEncoder salvos com sucesso.")
+
+
