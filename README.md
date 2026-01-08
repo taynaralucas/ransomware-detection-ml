@@ -31,23 +31,23 @@ O objetivo é classificar amostras de memória como **Benign** ou **Malware**, a
 
 ##  Estrutura do Projeto
 ransomware-detection-ml/
-├── docs/
-│ └── relatorio_tecnico.md # Uma descrição detalhada do desenvolvimento do projeto
-├── src/
-│ ├── train_model.py # Treinamento e avaliação do modelo
-│ └── predict.py # Inferência utilizando modelo treinado
-├── data/ # Dataset (ignorado pelo Git)
-├── models/ # Modelos treinados (ignorado pelo Git)
-├── .gitignore
-└── README.md
+- ├── docs/
+- │ └── relatorio_tecnico.md # Uma descrição detalhada do desenvolvimento do projeto
+- ├── src/
+- │ ├── train_model.py # Treinamento e avaliação do modelo
+- │ └── predict.py # Inferência utilizando modelo treinado
+- ├── data/ # Dataset (ignorado pelo Git)
+- ├── models/ # Modelos treinados (ignorado pelo Git)
+- ├── .gitignore
+- └── README.md
 
 ---
 
 ##  Treinamento do Modelo
 Para treinar o modelo, execute:
 
-cd src
-python train_model.py
+- cd src
+- python train_model.py
 
 ---
 
