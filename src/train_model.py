@@ -1,21 +1,30 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 DATASET_PATH = "../data/malmem2022.csv"
 
 def load_dataset(path):
-    df = pd.read_csv(path)
-    return df
+    return pd.read_csv(path)
 
-def analyze_dataset(df):
-    print("Informações gerais do dataset:\n")
-    print(df.info())
+def prepare_data(df):
+    # Variável alvo
+    y = df["Class"]
 
-    print("\nDistribuição das classes:\n")
-    print(df["Class"].value_counts())
+    # Removendo colunas não utilizadas no modelo
+    X = df.drop(columns=["Class", "Category", "Filename"])
 
-    print("\nPercentual das classes:\n")
-    print(df["Class"].value_counts(normalize=True) * 100)
+    return X, y
 
 if __name__ == "__main__":
     df = load_dataset(DATASET_PATH)
-    analyze_dataset(df)
+    X, y = prepare_data(df)
+
+    print("Formato de X:", X.shape)
+    print("Formato de y:", y.shape)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    print("\nConjunto de treino:", X_train.shape)
+    print("Conjunto de teste:", X_test.shape)
